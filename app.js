@@ -22,7 +22,7 @@ function displayMenu() {
     console.log(`5. Exit application`);
     return prompt(`Number of action to run: `);
 };
-// displayMenu();
+
 
 
 // CREATE
@@ -87,9 +87,8 @@ async function deleteCustomer() {
     });
     const id = prompt(`Copy and paste the id of the customer you would like to delete here: `);
     if (id) {
-        const customer = await Customer.findById(id);
+        const customer = await Customer.findByIdAndDelete(id);
         if (customer) {
-            await Customer.findByIdAndDelete(customer);
             console.log(`Customer deleted: ${customer.name}`);
         } else {
             console.log(`Customer not found.`);
@@ -99,6 +98,8 @@ async function deleteCustomer() {
     console.log(`Press enter to return to menu.`);
     prompt();
 };
+
+
 
 // Main program:
 async function main() {
